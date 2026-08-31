@@ -71,6 +71,13 @@
   /* border color */
   --color-border-default: #E5E7EB;
   --color-border-hover: #CBD5E1;
+
+  /* status */
+  --color-status-online: #10B981;
+  --color-status-offline: #94A3B8;
+  --color-status-busy: #F59E0B;
+  --color-status-error: #DC2626;
+  --color-status-success: #059669; 
 }
 
 :root {
