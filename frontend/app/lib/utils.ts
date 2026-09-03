@@ -1,4 +1,12 @@
-import { MessageSquareText, CircleDollarSign, TextAlignStart } from 'lucide-react';
+import { 
+  MessageSquareText,
+  CircleDollarSign,
+  UserRound,
+  Settings,
+  TextAlignStart,
+  Info,
+  LogOut
+} from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
 export const colors = {
@@ -65,3 +73,45 @@ export const routeIcons: Record<string, LucideIcon> = {
   "/dashboard/cryptoAgent": CircleDollarSign,
   "/dashboard/cvMakerAgent": TextAlignStart,
 }
+
+export const menuLabels = [
+  {
+    id: "group1",
+    groups: [
+      {
+        title: "profile",
+        Icon: UserRound,
+      },
+      {
+        title: "Settings",
+        Icon: Settings,
+      },
+      {
+        title: "My CVs",
+        Icon: TextAlignStart,
+      },
+    ],
+  },
+  {
+    id: "group2",
+    groups: [
+      {
+        title: "Help & support",
+        Icon: Info,
+      },
+      {
+        title: "What's new",
+        Icon: Info,
+      },
+    ],
+  },
+  {
+    id: "group3",
+    groups: [
+      {
+        title: "Log out",
+        Icon: LogOut,
+      },
+    ],
+  },
+];
