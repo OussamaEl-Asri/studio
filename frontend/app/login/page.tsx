@@ -1,3 +1,5 @@
+"use client";
+
 import { SignCard } from "../UI/SingnCard/signCard";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -23,16 +25,31 @@ import {
   InputGroupInput,
 } from "@/components/ui/input-group";
 import Link from "next/link";
-import { Mail, Lock } from "lucide-react";
+import { Mail, Lock, Eye, EyeOff } from "lucide-react";
+
+import { useState } from "react";
 
 function LoginForm() {
+  const [hidePassword, setHidePassword] = useState<boolean>(true);
+
   return (
-    <form>
+    <form className="px-10 text-primary">
       <FieldGroup>
         <Field>
-          <FieldLabel>Email address</FieldLabel>
-          <InputGroup>
-            <InputGroupInput placeholder="john.doe@aistudio.com" />
+          <FieldLabel htmlFor="email">Email address</FieldLabel>
+          <InputGroup
+            className="border-border-default h-10 
+          focus-within:border-accent-primary! focus-within:ring-1! 
+          focus-within:ring-border-hover!"
+          >
+            <InputGroupInput
+              data-slot="input-group-control"
+              className=""
+              type="email"
+              //   aria-invalid
+              required={true}
+              placeholder="john.doe@aistudio.com"
+            />
             <InputGroupAddon>
               {" "}
               <Mail />
@@ -42,12 +59,29 @@ function LoginForm() {
         </Field>
 
         <Field>
-          <FieldLabel>Password</FieldLabel>
-          <InputGroup>
-            <InputGroupInput type="password" placeholder="••••••••" />
+          <FieldLabel htmlFor="password">Password</FieldLabel>
+          <InputGroup
+            className="border-border-default h-10 
+          focus-within:border-accent-primary! focus-within:ring-1!
+           focus-within:ring-border-hover!"
+          >
+            <InputGroupInput
+              required={true}
+              type="password"
+              placeholder="••••••••"
+            />
             <InputGroupAddon>
               {" "}
               <Lock />
+            </InputGroupAddon>
+            <InputGroupAddon
+              align="inline-end"
+              className="hover:cursor-pointer"
+              onClick={() => {
+                setHidePassword((prev) => !prev);
+              }}
+            >
+              {hidePassword ? <Eye /> : <EyeOff />}
             </InputGroupAddon>
           </InputGroup>
           {/* <FieldError>Invalid Password</FieldError> */}
@@ -56,13 +90,28 @@ function LoginForm() {
 
       <FieldGroup className="flex-row items-center  my-5">
         <Field orientation="horizontal">
-          <Checkbox />
-          <FieldLabel>Remember me</FieldLabel>
+          <Checkbox
+            id="remember-me"
+            className="bg-card border-border-default
+              data-checked:bg-accent-primary data-checked:border-none"
+            required={true}
+          />
+          <FieldLabel
+            className="text-secondary hover:cursor-pointer"
+            htmlFor="remember-me"
+          >
+            <span>Remember me</span>
+          </FieldLabel>
         </Field>
 
         <Field>
           <FieldLabel className="justify-end">
-            <Link target="blanc" href="/">
+            <Link
+              target="blanc"
+              href="/"
+              className="text-accent-primary hover:cursor-pointer
+          hover:border-b hover:border-b-accent-primaryHover"
+            >
               Forgot password?
             </Link>
           </FieldLabel>
@@ -71,7 +120,12 @@ function LoginForm() {
 
       <FieldGroup>
         <Field>
-          <Button>Sign in</Button>
+          <Button
+            className="bg-accent-primary py-5 text-center text-[16px]
+          hover:bg-accent-primaryHover"
+          >
+            Sign in
+          </Button>
         </Field>
       </FieldGroup>
     </form>
@@ -80,7 +134,7 @@ function LoginForm() {
 
 export default function Login() {
   return (
-    <div className="w-120 bg-card ml-100 mt-20">
+    <div className="w-120 bg-card ml-100 mt-10">
       <SignCard Render=<LoginForm />></SignCard>
     </div>
   );
