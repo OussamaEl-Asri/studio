@@ -23,7 +23,7 @@ import { ChatPlaceholder } from "@/app/UI/chat/chatPlaceholder";
 import { chats } from "@/app/seed/chat";
 
 export default function Home() {
-  const isEmpty: boolean = true;
+  const isEmpty: boolean = false;
   return (
     <MessageScrollerProvider>
       <Card className=" h-screen max-h-screen rounded-none bg-main pt-0">

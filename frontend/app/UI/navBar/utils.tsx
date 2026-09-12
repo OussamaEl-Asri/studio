@@ -46,8 +46,6 @@ const NotificationBadge = ({ number }: { number: number }) => (
   </span>
 );
 
-import { notifications } from "@/app/seed/notifications";
-
 export const Menu = () => (
   <DropdownMenu highlightItemOnHover={false}>
     <DropdownMenuTrigger openOnHover>
@@ -123,7 +121,7 @@ export const NotificationPlaceholder = () => (
     </DropdownMenuTrigger>
 
     <DropdownMenuContent align="end" className="w-90 h-100 py-3">
-      <DropdownMenuGroup className="flex items-center justify-between  ">
+      <DropdownMenuGroup className="flex items-center justify-between  pr-3">
         <DropdownMenuItem className="text-[18px] text-primary px-3">
           Notifications
         </DropdownMenuItem>
