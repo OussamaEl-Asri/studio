@@ -1,39 +1,51 @@
 "use client";
 
 import { SignCard } from "../UI/SingnCard/signCard";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { loginFormat, loginFormatInp, loginFomatOut } from "../lib/definitions";
+import { onSubmit } from "../lib/api/auth";
 
 import {
   Field,
-  FieldContent,
-  FieldDescription,
   FieldError,
   FieldGroup,
   FieldLabel,
-  FieldLegend,
-  FieldSeparator,
-  FieldSet,
-  FieldTitle,
 } from "@/components/ui/field";
-import { Switch } from "@/components/ui/switch";
+
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
+
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
 } from "@/components/ui/input-group";
+
 import Link from "next/link";
 import { Mail, Lock, Eye, EyeOff } from "lucide-react";
 
 import { useState } from "react";
+import { useForm, Controller } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 function LoginForm() {
   const [hidePassword, setHidePassword] = useState<boolean>(true);
 
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<loginFormatInp, any, loginFomatOut>({
+    resolver: zodResolver(loginFormat),
+    defaultValues: {
+      email: "",
+      password: "",
+      rememberMe: false,
+    },
+  });
+
   return (
-    <form className="px-10 text-primary">
+    <form className="px-10 text-primary" onSubmit={handleSubmit(onSubmit)}>
       <FieldGroup>
         <Field>
           <FieldLabel htmlFor="email">Email address</FieldLabel>
@@ -46,16 +58,16 @@ function LoginForm() {
               data-slot="input-group-control"
               className=""
               type="email"
-              //   aria-invalid
-              required={true}
+              aria-invalid={!!errors.email}
               placeholder="john.doe@aistudio.com"
+              {...register("email", { required: true })}
             />
             <InputGroupAddon>
               {" "}
               <Mail />
             </InputGroupAddon>
           </InputGroup>
-          {/* <FieldError>Invalid Email</FieldError> */}
+          {!!errors.email && <FieldError>{errors.email.message}</FieldError>}
         </Field>
 
         <Field>
@@ -66,9 +78,10 @@ function LoginForm() {
            focus-within:ring-border-hover!"
           >
             <InputGroupInput
-              required={true}
-              type="password"
+              type={hidePassword ? "password" : "text"}
               placeholder="••••••••"
+              aria-invalid={!!errors?.password}
+              {...register("password", { required: true, minLength: 8 })}
             />
             <InputGroupAddon>
               {" "}
@@ -84,17 +97,26 @@ function LoginForm() {
               {hidePassword ? <Eye /> : <EyeOff />}
             </InputGroupAddon>
           </InputGroup>
-          {/* <FieldError>Invalid Password</FieldError> */}
+          {!!errors.password && (
+            <FieldError>{errors.password.message}</FieldError>
+          )}
         </Field>
       </FieldGroup>
 
       <FieldGroup className="flex-row items-center  my-5">
         <Field orientation="horizontal">
-          <Checkbox
-            id="remember-me"
-            className="bg-card border-border-default
-              data-checked:bg-accent-primary data-checked:border-none"
-            required={true}
+          <Controller
+            name="rememberMe"
+            control={control}
+            render={({ field }) => (
+              <Checkbox
+                id="remember-me"
+                className="bg-card border-border-default
+                data-checked:bg-accent-primary data-checked:border-none"
+                checked={field.value}
+                onCheckedChange={field.onChange}
+              />
+            )}
           />
           <FieldLabel
             className="text-secondary hover:cursor-pointer"
@@ -123,6 +145,7 @@ function LoginForm() {
           <Button
             className="bg-accent-primary py-5 text-center text-[16px]
           hover:bg-accent-primaryHover"
+            type="submit"
           >
             Sign in
           </Button>
