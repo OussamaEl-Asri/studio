@@ -40,17 +40,19 @@ export function SignCard({ Render }: { Render: ReactNode }) {
       <CardContent className="mt-5">{Render}</CardContent>
       <CardFooter className="bg-card border-none flex-col gap-5">
         {/* separator */}
-        <div className="flex gap-2 text-secondary">
-          <div className="w-30 h-0.5 bg-accent-soft self-center"></div>
-          <div className="text-center">or continue with</div>
-          <div className="w-30 h-0.5 bg-accent-soft self-center"></div>
+        <div className="flex w-full items-center gap-2 text-secondary">
+          <div className="h-0.5 flex-1 bg-accent-soft self-center"></div>
+          <div className="shrink-0 text-center text-sm sm:text-base">
+            or continue with
+          </div>
+          <div className="h-0.5 flex-1 bg-accent-soft self-center"></div>
         </div>
 
         {/* Oauth */}
-        <div className=" w-full flex justify-evenly">
+        <div className="w-full flex flex-col sm:flex-row gap-3 sm:justify-evenly">
           <Button
-            className="bg-card text-primary w-1/3 py-5 text-center 
-          border-border-default flex items-center justify-center 
+            className="bg-card text-primary w-full sm:w-1/3 py-5 text-center 
+          border-border-default flex items-center justify-center gap-2
           hover:bg-accent-soft hover:border-border-hover group"
           >
             <Image
@@ -63,8 +65,8 @@ export function SignCard({ Render }: { Render: ReactNode }) {
             Google
           </Button>
           <Button
-            className="bg-card text-primary w-1/3 py-5 text-center
-           border-border-default flex items-center justify-center 
+            className="bg-card text-primary w-full sm:w-1/3 py-5 text-center
+           border-border-default flex items-center justify-center gap-2
            hover:bg-accent-soft hover:border-border-hover"
           >
             <Image

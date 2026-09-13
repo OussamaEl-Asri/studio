@@ -45,7 +45,10 @@ function LoginForm() {
   });
 
   return (
-    <form className="px-10 text-primary" onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className="px-4 sm:px-6 md:px-10 text-primary"
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <FieldGroup>
         <Field>
           <FieldLabel htmlFor="email">Email address</FieldLabel>
@@ -103,8 +106,11 @@ function LoginForm() {
         </Field>
       </FieldGroup>
 
-      <FieldGroup className="flex-row items-center  my-5">
-        <Field orientation="horizontal">
+      <FieldGroup
+        className="flex flex-row flex-wrap items-center
+       justify-between gap-2 my-5"
+      >
+        <Field orientation="horizontal" className="w-fit">
           <Controller
             name="rememberMe"
             control={control}
@@ -126,8 +132,8 @@ function LoginForm() {
           </FieldLabel>
         </Field>
 
-        <Field>
-          <FieldLabel className="justify-end">
+        <Field className="w-fit">
+          <FieldLabel className="justify-end self-end">
             <Link
               target="blanc"
               href="/"
@@ -157,7 +163,7 @@ function LoginForm() {
 
 export default function Login() {
   return (
-    <div className="w-120 bg-card ml-100 mt-10">
+    <div className="w-full max-w-md mx-auto mt-6 px-4 sm:mt-10 sm:px-0">
       <SignCard Render=<LoginForm />></SignCard>
     </div>
   );
