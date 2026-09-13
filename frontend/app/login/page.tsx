@@ -163,7 +163,7 @@ function LoginForm() {
 
 export default function Login() {
   return (
-    <div className="w-full max-w-md mx-auto mt-6 px-4 sm:mt-10 sm:px-0">
+    <div className="w-full h-full max-w-md mx-auto sm:h-fit  sm:mt-10 ">
       <SignCard Render=<LoginForm />></SignCard>
     </div>
   );
