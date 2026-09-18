@@ -18,7 +18,7 @@ import { ReactNode } from "react";
 export function SignCard({ Render }: { Render: ReactNode }) {
   return (
     <Card className="w-full h-full rounded-none sm:rounded-2xl">
-      <CardHeader className=" ">
+      <CardHeader>
         <CardTitle
           className="text-primary flex flex-col gap-10
         justify-center items-center mt-5"

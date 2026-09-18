@@ -59,7 +59,6 @@ function LoginForm() {
           >
             <InputGroupInput
               data-slot="input-group-control"
-              className=""
               type="email"
               aria-invalid={!!errors.email}
               placeholder="john.doe@aistudio.com"
@@ -163,8 +162,8 @@ function LoginForm() {
 
 export default function Login() {
   return (
-    <div className="w-full h-full max-w-md mx-auto sm:h-fit  sm:mt-10 ">
-      <SignCard Render=<LoginForm />></SignCard>
+    <div className="w-full h-full max-w-md mx-auto sm:h-fit sm:mt-10 ">
+      <SignCard Render=<LoginForm /> />
     </div>
   );
 }
