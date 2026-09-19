@@ -15,7 +15,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { ReactNode } from "react";
 
-export function SignCard({ Render }: { Render: ReactNode }) {
+export function SignCard({
+  isLogin,
+  Render,
+}: {
+  isLogin: boolean;
+  Render: ReactNode;
+}) {
   return (
     <Card className="w-full h-full rounded-none sm:rounded-2xl">
       <CardHeader>
@@ -31,10 +37,14 @@ export function SignCard({ Render }: { Render: ReactNode }) {
             />{" "}
             <span> AI Studio </span>
           </div>
-          <h1 className="text-[28px]">Welcome back</h1>
+          <h1 className="text-[28px]">
+            {isLogin ? "Welcome back" : "Create your account"}
+          </h1>
         </CardTitle>
         <CardDescription className="text-center mt-2 text-[16px]">
-          Sign in to continue with AI Studio
+          {isLogin
+            ? "Sign in to continue with AI Studio"
+            : "Start your journey with AI Studio"}
         </CardDescription>
       </CardHeader>
       <CardContent className="mt-5">{Render}</CardContent>
@@ -43,7 +53,7 @@ export function SignCard({ Render }: { Render: ReactNode }) {
         <div className="flex w-full items-center gap-2 text-secondary">
           <div className="h-0.5 flex-1 bg-accent-soft self-center"></div>
           <div className="shrink-0 text-center text-sm sm:text-base">
-            or continue with
+            {isLogin ? "or continue with" : "or sign up with"}
           </div>
           <div className="h-0.5 flex-1 bg-accent-soft self-center"></div>
         </div>
@@ -81,14 +91,13 @@ export function SignCard({ Render }: { Render: ReactNode }) {
 
         {/* login */}
         <div className="text-secondary">
-          Don't have an account?{" "}
+          {isLogin ? "Don't have an account?" : "Already have an account?"}
           <Link
-            href="/"
-            target="black"
+            href={isLogin ? "/signup" : "/login"}
             className="text-accent-primary hover:cursor-pointer
-          hover:border-b hover:border-b-accent-primaryHover "
+          hover:border-b hover:border-b-accent-primaryHover ml-1"
           >
-            Sign up{" "}
+            {isLogin ? "Sign up" : "Log in"}
           </Link>
         </div>
       </CardFooter>

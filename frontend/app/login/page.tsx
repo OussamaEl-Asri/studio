@@ -2,7 +2,7 @@
 
 import { SignCard } from "../UI/SingnCard/signCard";
 import { loginFormat, loginFormatInp, loginFomatOut } from "../lib/definitions";
-import { onSubmit } from "../lib/api/auth";
+import { onSubmitLogin } from "../lib/api/auth";
 
 import {
   Field,
@@ -47,7 +47,7 @@ function LoginForm() {
   return (
     <form
       className="px-4 sm:px-6 md:px-10 text-primary"
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(onSubmitLogin)}
     >
       <FieldGroup>
         <Field>
@@ -163,7 +163,7 @@ function LoginForm() {
 export default function Login() {
   return (
     <div className="w-full h-full max-w-md mx-auto sm:h-fit sm:mt-10 ">
-      <SignCard Render=<LoginForm /> />
+      <SignCard isLogin={true} Render=<LoginForm /> />
     </div>
   );
 }
