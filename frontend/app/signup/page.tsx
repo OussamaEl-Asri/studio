@@ -130,16 +130,18 @@ function SignupForm() {
 
   return (
     <form
-      className="px-4 sm:px-6 md:px-5 text-primary flex flex-col gap-3"
+      className="px-0 sm:px-6 text-primary flex flex-col gap-3"
       onSubmit={handleSubmit(onSubmitSignup)}
     >
-      <FieldGroup className="flex-row">
-        <Field>
+      <FieldGroup className="flex-col min-[360px]:flex-row">
+        <Field className="min-w-0">
           <FieldLabel htmlFor="first-name" className="flex gap-1">
-            <div className="w-full flex justify-between items-center">
+            <div className="w-full flex flex-wrap justify-between items-center gap-x-2 gap-y-0.5">
               <span className="stretch-0">First Name</span>
               {!!errors.firstName && (
-                <FieldError>{errors.firstName.message}</FieldError>
+                <FieldError className="ml-auto text-right">
+                  {errors.firstName.message}
+                </FieldError>
               )}
             </div>
           </FieldLabel>
@@ -147,18 +149,20 @@ function SignupForm() {
             type="first-name"
             aria-invalid={!!errors.firstName}
             placeholder="John"
-            className="border-border-default h-10 
-            focus-within:border-accent-primary! focus-within:ring-1! 
+            className="border-border-default h-11 sm:h-10
+            focus-within:border-accent-primary! focus-within:ring-1!
           focus-within:ring-border-hover!"
             {...register("firstName")}
           />
         </Field>
-        <Field>
+        <Field className="min-w-0">
           <FieldLabel htmlFor="last-name">
-            <div className="w-full flex justify-between items-center">
+            <div className="w-full flex flex-wrap justify-between items-center gap-x-2 gap-y-0.5">
               <span>Last Name</span>
               {!!errors.lastName && (
-                <FieldError>{errors.lastName.message}</FieldError>
+                <FieldError className="ml-auto text-right">
+                  {errors.lastName.message}
+                </FieldError>
               )}
             </div>
           </FieldLabel>
@@ -166,8 +170,8 @@ function SignupForm() {
             type="last-name"
             placeholder="Doe"
             aria-invalid={!!errors.lastName}
-            className="border-border-default h-10 
-            focus-within:border-accent-primary! focus-within:ring-1! 
+            className="border-border-default h-11 sm:h-10
+            focus-within:border-accent-primary! focus-within:ring-1!
           focus-within:ring-border-hover!"
             {...register("lastName")}
           />
@@ -177,18 +181,18 @@ function SignupForm() {
       <FieldGroup>
         <Field>
           <FieldLabel>
-            <div className="w-full flex justify-between items-center">
+            <div className="w-full flex flex-wrap justify-between items-center gap-x-2 gap-y-0.5">
               <span>Email address</span>
               {!!errors.email && (
-                <FieldError className="ml-31 mr-auto">
+                <FieldError className="ml-auto text-right">
                   {errors.email.message}
                 </FieldError>
               )}
             </div>
           </FieldLabel>
           <InputGroup
-            className="border-border-default h-10 
-          focus-within:border-accent-primary! focus-within:ring-1! 
+            className="border-border-default h-11 sm:h-10
+          focus-within:border-accent-primary! focus-within:ring-1!
           focus-within:ring-border-hover!"
           >
             <InputGroupInput
@@ -206,17 +210,17 @@ function SignupForm() {
 
         <Field>
           <FieldLabel>
-            <div className="w-full flex justify-between items-center">
+            <div className="w-full flex flex-wrap justify-between items-center gap-x-2 gap-y-0.5">
               <span>Password</span>
               {!!errors.password && (
-                <FieldError className="ml-20 mr-auto">
+                <FieldError className="ml-auto text-right">
                   {errors.password.message}
                 </FieldError>
               )}
             </div>
           </FieldLabel>
           <InputGroup
-            className="border-border-default h-10 
+            className="border-border-default h-11 sm:h-10
           focus-within:border-accent-primary! focus-within:ring-1!
            focus-within:ring-border-hover!"
           >
@@ -255,15 +259,17 @@ function SignupForm() {
 
         <Field>
           <FieldLabel>
-            <div className="w-full flex justify-between items-center">
+            <div className="w-full flex flex-wrap justify-between items-center gap-x-2 gap-y-0.5">
               <span>Confirm password</span>
               {!!errors.confirmPassword && (
-                <FieldError>{errors.confirmPassword.message}</FieldError>
+                <FieldError className="ml-auto text-right">
+                  {errors.confirmPassword.message}
+                </FieldError>
               )}
             </div>
           </FieldLabel>
           <InputGroup
-            className="border-border-default h-10 
+            className="border-border-default h-11 sm:h-10
           focus-within:border-accent-primary! focus-within:ring-1!
            focus-within:ring-border-hover!"
           >
@@ -291,7 +297,7 @@ function SignupForm() {
       </FieldGroup>
 
       <FieldGroup>
-        <Field orientation="horizontal" className="w-fit">
+        <Field orientation="horizontal" className="w-full sm:w-fit items-start">
           <Controller
             name="agreedTo"
             control={control}
@@ -299,14 +305,14 @@ function SignupForm() {
               <Checkbox
                 id="agreed-to"
                 aria-invalid={!!errors.agreedTo}
-                className="bg-card border-border-default
+                className="bg-card border-border-default mt-0.5 shrink-0
                 data-checked:bg-accent-primary data-checked:border-none"
                 checked={field.value}
                 onCheckedChange={field.onChange}
               />
             )}
           />
-          <FieldLabel className="text-secondary">
+          <FieldLabel className="text-secondary block">
             I agree to{" "}
             <Link
               className="text-accent-primary hover:cursor-pointer hover:border-b
@@ -344,7 +350,7 @@ function SignupForm() {
 
 export default function page() {
   return (
-    <div className="w-full h-full max-w-md mx-auto sm:h-fit sm:mt-10 pb-5">
+    <div className="w-full h-full overflow-y-auto max-w-md mx-auto sm:h-fit sm:overflow-visible sm:mt-10 pb-5">
       <SignCard isLogin={false} Render=<SignupForm /> />
     </div>
   );

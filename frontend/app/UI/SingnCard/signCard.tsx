@@ -23,7 +23,7 @@ export function SignCard({
   Render: ReactNode;
 }) {
   return (
-    <Card className="w-full h-full rounded-none sm:rounded-2xl">
+    <Card className="w-full min-h-full rounded-none sm:rounded-2xl">
       <CardHeader>
         <CardTitle
           className="text-primary flex flex-col gap-10
@@ -48,7 +48,7 @@ export function SignCard({
         </CardDescription>
       </CardHeader>
       <CardContent className="mt-5">{Render}</CardContent>
-      <CardFooter className="bg-card border-none flex-col gap-5">
+      <CardFooter className="bg-card border-none flex-col gap-5 sm:px-10">
         {/* separator */}
         <div className="flex w-full items-center gap-2 text-secondary">
           <div className="h-0.5 flex-1 bg-accent-soft self-center"></div>
@@ -59,9 +59,9 @@ export function SignCard({
         </div>
 
         {/* Oauth */}
-        <div className="w-full flex flex-col sm:flex-row gap-3 sm:justify-evenly">
+        <div className="w-full flex flex-col sm:flex-row gap-3">
           <Button
-            className="bg-card text-primary w-full sm:w-1/3 py-5 text-center 
+            className="bg-card text-primary w-full sm:w-auto sm:flex-1 py-5 text-center 
           border-border-default flex items-center justify-center gap-2
           hover:bg-accent-soft hover:border-border-hover group"
           >
@@ -75,7 +75,7 @@ export function SignCard({
             Google
           </Button>
           <Button
-            className="bg-card text-primary w-full sm:w-1/3 py-5 text-center
+            className="bg-card text-primary w-full sm:w-auto sm:flex-1 py-5 text-center
            border-border-default flex items-center justify-center gap-2
            hover:bg-accent-soft hover:border-border-hover"
           >
