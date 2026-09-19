@@ -135,7 +135,14 @@ function SignupForm() {
     >
       <FieldGroup className="flex-row">
         <Field>
-          <FieldLabel htmlFor="first-name">First Name</FieldLabel>
+          <FieldLabel htmlFor="first-name" className="flex gap-1">
+            <div className="w-full flex justify-between items-center">
+              <span className="stretch-0">First Name</span>
+              {!!errors.firstName && (
+                <FieldError>{errors.firstName.message}</FieldError>
+              )}
+            </div>
+          </FieldLabel>
           <Input
             type="first-name"
             aria-invalid={!!errors.firstName}
@@ -145,12 +152,16 @@ function SignupForm() {
           focus-within:ring-border-hover!"
             {...register("firstName")}
           />
-          {!!errors.firstName && (
-            <FieldError>{errors.firstName.message}</FieldError>
-          )}
         </Field>
         <Field>
-          <FieldLabel htmlFor="last-name">Last Name</FieldLabel>
+          <FieldLabel htmlFor="last-name">
+            <div className="w-full flex justify-between items-center">
+              <span>Last Name</span>
+              {!!errors.lastName && (
+                <FieldError>{errors.lastName.message}</FieldError>
+              )}
+            </div>
+          </FieldLabel>
           <Input
             type="last-name"
             placeholder="Doe"
@@ -160,15 +171,21 @@ function SignupForm() {
           focus-within:ring-border-hover!"
             {...register("lastName")}
           />
-          {!!errors.lastName && (
-            <FieldError>{errors.lastName.message}</FieldError>
-          )}
         </Field>
       </FieldGroup>
 
       <FieldGroup>
         <Field>
-          <FieldLabel>Email address</FieldLabel>
+          <FieldLabel>
+            <div className="w-full flex justify-between items-center">
+              <span>Email address</span>
+              {!!errors.email && (
+                <FieldError className="ml-31 mr-auto">
+                  {errors.email.message}
+                </FieldError>
+              )}
+            </div>
+          </FieldLabel>
           <InputGroup
             className="border-border-default h-10 
           focus-within:border-accent-primary! focus-within:ring-1! 
@@ -185,11 +202,19 @@ function SignupForm() {
               <Mail />
             </InputGroupAddon>
           </InputGroup>
-          {!!errors.email && <FieldError>{errors.email.message}</FieldError>}
         </Field>
 
         <Field>
-          <FieldLabel>Password</FieldLabel>
+          <FieldLabel>
+            <div className="w-full flex justify-between items-center">
+              <span>Password</span>
+              {!!errors.password && (
+                <FieldError className="ml-20 mr-auto">
+                  {errors.password.message}
+                </FieldError>
+              )}
+            </div>
+          </FieldLabel>
           <InputGroup
             className="border-border-default h-10 
           focus-within:border-accent-primary! focus-within:ring-1!
@@ -226,14 +251,17 @@ function SignupForm() {
               </EmptyDescription>
             </EmptyContent>
           </Empty>
-
-          {!!errors.password && (
-            <FieldError>{errors.password.message}</FieldError>
-          )}
         </Field>
 
         <Field>
-          <FieldLabel>Confirm password</FieldLabel>
+          <FieldLabel>
+            <div className="w-full flex justify-between items-center">
+              <span>Confirm password</span>
+              {!!errors.confirmPassword && (
+                <FieldError>{errors.confirmPassword.message}</FieldError>
+              )}
+            </div>
+          </FieldLabel>
           <InputGroup
             className="border-border-default h-10 
           focus-within:border-accent-primary! focus-within:ring-1!
@@ -259,9 +287,6 @@ function SignupForm() {
               {hideConfirmPassword ? <Eye /> : <EyeOff />}
             </InputGroupAddon>
           </InputGroup>
-          {!!errors.confirmPassword && (
-            <FieldError>{errors.confirmPassword.message}</FieldError>
-          )}
         </Field>
       </FieldGroup>
 

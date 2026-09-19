@@ -21,12 +21,12 @@ export const loginFormat = z.object({
 export const signupFormat = z.object({
   firstName: z.string()
             .trim()
-            .min(1, {message: "Field can't be empty"})
+            .min(1, {message: "Empty field"})
             .max(20 , {message: "First name too long"}),
 
   lastName: z.string()
           .trim()
-          .min(1, {message: "Field can't be empty"})
+          .min(1, {message: "Empty field"})
           .max(20 , {message: "Last name too long"}),
 
   email: z
